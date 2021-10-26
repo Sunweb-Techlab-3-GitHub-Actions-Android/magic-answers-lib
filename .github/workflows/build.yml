@@ -34,10 +34,10 @@ jobs:
       - name: Gradle Wrapper Validation
         uses: gradle/wrapper-validation-action@v1.0.4
       - name: Run unit tests
-        run: ./gradlew library:test --stacktrace
+        run: ./gradlew library:test
       - name: Upload Reports
         uses: actions/upload-artifact@v2.2.4
         with:
-          name: Test-Reports
-          path: library/build/reports
+          name: test-reports
+          path: library/build/reports/tests
         if: always()

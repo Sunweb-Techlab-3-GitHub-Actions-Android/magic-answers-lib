@@ -1,0 +1,14 @@
+# Detekt custom configuration
+# Links:
+#   - Detekt: https://github.com/detekt/detekt
+#   - Detekt config file: https://detekt.github.io/detekt/configurations.html
+#   - Detekt Intellij IDE plugin: https://github.com/detekt/detekt-intellij-plugin
+
+formatting:
+  active: false
+
+style:
+  NewLineAtEndOfFile:
+    active: false
+  MaxLineLength:
+    maxLineLength: 200

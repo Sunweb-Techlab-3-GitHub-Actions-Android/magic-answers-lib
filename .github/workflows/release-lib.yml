@@ -1,11 +1,9 @@
 name: Release library
 
 on:
-  workflow_run:
-    workflows: ["Build"]
-    branches: [main]
-    types:
-      - completed
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -24,14 +22,14 @@ jobs:
       - name: Build the library
         run: ./gradlew library:assemble
       - name: Release
-          uses: softprops/action-gh-release@v1
-          if: startsWith(github.ref, 'refs/tags/')
-          with:
-            body: "The changelog notes goes here"
-            draft: true
-            files: |
-              library/build/outputs/aar/library-debug.arr
-              library/build/outputs/aar/library-release.arr
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          body: "The changelog notes goes here"
+          draft: true
+          files: |
+            library/build/outputs/aar/library-debug.arr
+            library/build/outputs/aar/library-release.arr
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

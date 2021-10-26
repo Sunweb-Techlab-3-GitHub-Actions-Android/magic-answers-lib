@@ -93,15 +93,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: false
           CUSTOM_TAG: ${{ steps.version.outputs.name }}
-      - name: Display structure of downloaded files
-        run: |
-          echo "steps.version.outputs.name: ${{ steps.version.outputs.name }}"
-          echo "github.ref: ${{ github.ref }}"
-          ls -R downloaded-build
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           body: "The changelog notes goes here"
+          tag_name: ${{ steps.version.outputs.name }}
           draft: true
           files: |
             downloaded-build/library-debug.aar

@@ -92,16 +92,15 @@ jobs:
         uses: actions/download-artifact@v2.0.10
         with:
           name: build
-          path: path/to/artifact
+          path: downloaded-build
       - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: path/to/artifact
-#      - name: Release
-#        uses: softprops/action-gh-release@v1
-#        if: startsWith(github.ref, 'refs/tags/')
-#        with:
-#          body: "The changelog notes goes here"
-#          draft: true
-#          files: |
-#            library/build/outputs/aar/library-debug.arr
-#            library/build/outputs/aar/library-release.arr
+        run: ls -R downloaded-build
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          body: "The changelog notes goes here"
+          draft: true
+          files: |
+            downloaded-build/library-debug.arr
+            downloaded-build/library-release.arr

@@ -55,6 +55,7 @@ detekt {
     config = files("../detekt.yml")
     buildUponDefaultConfig = true
     ignoreFailures = true
+    basePath = projectDir
 }
 tasks.named("detekt").configure {
     reports {
